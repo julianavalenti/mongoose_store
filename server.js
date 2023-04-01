@@ -64,6 +64,24 @@ app.get('/products/:id/edit', async (req, res) => {
     res.render("edit.ejs", {product})
 });
 
+app.post("/products/:id/buy", async (req, res) => {
+    try {
+      
+      const product = await Product.findById(req.params.id);
+      if (!product) {
+        return res.status(404).send("Product not found");
+      }
+      if (product.qty <= 0) {
+        return res.status(400).send("Product out of stock");
+      }
+      product.qty -= 1;
+      await product.save();
+      res.redirect(`/products/${product._id}`);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal server error");
+    }
+  });
 
 // C for Create 
  app.post("/new", (req,res) => {
@@ -83,6 +101,8 @@ app.get('/products/:id', async (req, res) => {
         const foundProduct = await Product.findById(req.params.id).exec()
         res.render('show.ejs', {
             product: foundProduct,
+
+            
         });
     
     
