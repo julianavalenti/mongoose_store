@@ -2,6 +2,8 @@ require ("dotenv").config()
 const express = require("express")
 const mongoose = require("mongoose")
 const Product = require("./models/products")
+const methodOverride = require("method-override")
+
 
 const app = express()
 const PORT = process.env.PORT ;
@@ -9,12 +11,13 @@ const PORT = process.env.PORT ;
 mongoose.connect(process.env.DATABASE_URL)
 const db = mongoose.connection
 
-db.on('error', (err) => console.log(err.message + ' is mongod not running?'));
+db.on('error', (err) => console.log(' is mongod not running?'));
 db.on('connected', () => console.log('mongo connected'));
 db.on('disconnected', () => console.log('mongo disconnected'));
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
+app.use(methodOverride("_method"))
 
 
 app.get("/",(req,res) => {
@@ -23,19 +26,50 @@ app.get("/",(req,res) => {
 
 // I for Index
 
-app.get("/products", (req,res) => {
-    res.render("index.ejs")
+app.get('/products', async (req, res) => {
+    const allProducts = await Product.find({})
+    res.render('index.ejs', {
+        products: allProducts
+    })
 })
+
+
 // N for New 
 app.get("/new", (req,res) => {
     res.render("new.ejs")
 })
 
+//D for delete
+app.delete('/products/:id', async (req, res) => {
+ 
+    await Product.findByIdAndDelete(req.params.id);
+    res.redirect("/products")
+})
+
+// U for update
+
+app.put('/products/:id', async (req, res) => {
+    await Product.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {new:true}
+    );
+    res.redirect(`/products/${req.params.id}`)
+});
+
+app.get('/products/:id/edit', async (req, res) => {
+    const product = await Product.findById(
+        req.params.id,
+    );
+    res.render("edit.ejs", {product})
+});
+
+
 // C for Create 
-app.post("/new", (req,res) => {
+ app.post("/new", (req,res) => {
     const product = new Product (req.body)
-    product.save().then(res.send(product))
-    res.redirect("show.ejs")
+    product.save().then(res.redirect("/products"))
+    
 });
 
 
@@ -43,6 +77,17 @@ app.post("/new", (req,res) => {
 app.get("/productpage", (req,res) => {
     res.render("show.ejs")
 })
+
+app.get('/products/:id', async (req, res) => {
+    
+        const foundProduct = await Product.findById(req.params.id).exec()
+        res.render('show.ejs', {
+            product: foundProduct,
+        });
+    
+    
+});
+
 
 app.listen(PORT, () => {
     console.log(`listening at  ${PORT}`)

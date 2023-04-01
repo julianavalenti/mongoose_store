@@ -5,10 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products Page</title>
+
 </head>
 <body>
-    
+    <a href="/new">Create New Product</a>
     <h1>Products List</h1>
-    
+    <ul>
+            <% products.forEach(product => { %>
+            <li><a href="/products/<%=product._id%>"> <%=product.name%> </a></li>
+            <% }) %>
+        </ul>
 </body>
 </html>
