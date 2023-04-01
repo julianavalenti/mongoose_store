@@ -6,6 +6,7 @@
     <title>Product Page</title>
 </head>
 <body>
+    <a href="/products">Back to Products</a>
     <h1><%=product.name %></h1>
 
 <ul>
@@ -29,11 +30,12 @@
     <form method="POST" action="/products/<%= product._id %>/buy">
         <% if(product.qty <= 0 ){ %>
             <button type="hidden"></button>
+            <h3> OUT OF STOCK</h3>
         <% } else { %>
             <button type="submit">BUY</button>
         <% } %>
     </form>
-    
+
     </div>
     
 </div>
