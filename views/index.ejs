@@ -5,15 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products Page</title>
+    <link rel="stylesheet" href="./public/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
 
 </head>
 <body>
-    <a href="/new">Create New Product</a>
+    <header>
+    <nav>
+    <a href="/products">HOME</a>
+    <a href="/new">CREATE A NEW PRODUCT</a>
+    <a href="#">CONTACT</a>
+    <a href="#">LOGIN</a>
+    </nav>
+    </header>
+
+
     <h1>Products List</h1>
+    
+    <div class="products">
     <ul>
             <% products.forEach(product => { %>
             <li><a href="/products/<%=product._id%>"> <%=product.name%> </a></li>
+            
+
+            <a href="/products/<%=product._id%>">
+                <img src="<%=product.img %>" alt="product picture">
+              </a>
             <% }) %>
         </ul>
+    </div>
 </body>
 </html>
