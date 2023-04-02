@@ -42,31 +42,31 @@
             flex-grow: 1;
             
             }
-.list li {
-  margin-bottom: 10px;
-  font-size: 20px;
-  text-transform: capitalize;
-  text-align: left;
-}
-#title {
-    text-transform: uppercase;
-}
-.list img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  
-}
-.edit {
-display: flex;
-  margin-top: 20px;
-  text-align: left;
-  text-transform:capitalize;
-}
-#ed {
-    color: aliceblue;
-    
-}
+            .list li {
+            margin-bottom: 10px;
+            font-size: 20px;
+            text-transform: capitalize;
+            text-align: left;
+            }
+            #title {
+                text-transform: uppercase;
+            }
+            .list img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            
+            }
+            .edit {
+            display: flex;
+            margin-top: 20px;
+            text-align: left;
+            text-transform:capitalize;
+            }
+            #ed {
+                color: aliceblue;
+                
+            }
             
             
         </style>
@@ -98,8 +98,8 @@ display: flex;
 
    
 
-    <a id ="ed" href="/products/<%= product._id %>/edit">Edit Product</a>
     
+    <a href="/products/<%= product._id %>/edit"><button type="button" id ="edit" >EDIT</button></a>
     
     <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
          <input type="submit" value="DELETE">
