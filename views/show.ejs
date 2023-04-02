@@ -4,8 +4,83 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product Page</title>
-        <link rel="stylesheet" href="./public/style.css">
+        <link rel="stylesheet" href="./public/style.css" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+        <style>
+            body {
+                background-color: rgba(7, 7, 7, 0.928);
+                color: white;
+                }
+
+            nav a{
+                color: yellow;
+                text-decoration: none;
+                font-family: 'Oswald', sans-serif;
+                
+                background-color: rgb(104, 104, 114);
+                display: inline-block;
+                list-style: none;
+                padding: 10px 30px 10px 30px;
+                transition: all 0.3s ease 0s;
+            }
+
+            nav a:hover {
+                transition: all 0.3s ease 0s;
+                color:azure;
+            }
+           .list {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            border: 2px solid rgb(247, 244, 244);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            flex-grow: 1;
+            
+            }
+
+.list li {
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-transform: capitalize;
+  text-align: left;
+}
+
+#title {
+    text-transform: uppercase;
+}
+
+.list img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  
+}
+
+.edit {
+display: flex;
+
+  margin-top: 20px;
+  text-align: left;
+  text-transform:capitalize;
+}
+
+#ed {
+    color: aliceblue;
+    
+}
+
+
+            
+
+            
+        </style>
     </head>
 <body>
     <header>
@@ -18,14 +93,13 @@
     </header>
 
 
-    <h1><%=product.name %></h1>
+    
 
-
-    <ul>
-        <li><%=product.name %></li>
-        <li><%=product.description %></li>
-        <li><%=product.qty%></li>
-        <li><%=product.price%></li>
+    <ul class="list">
+        <li id="title"><%=product.name %></li>
+        <li>Description: <%=product.description %></li>
+        <li>Quantity in stock: <%=product.qty%></li>
+        <li> Price: $<%=product.price%></li>
         <img src="<%=product.img %>" alt="product picture">
     </ul>
 
@@ -34,7 +108,7 @@
 
    
 
-    <a href="/products/<%= product._id %>/edit">Edit Product</a>
+    <a id ="ed" href="/products/<%= product._id %>/edit">Edit Product</a>
     
     <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
          <input type="submit" value="DELETE">
