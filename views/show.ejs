@@ -8,7 +8,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
         <style>
             body {
-                background-color: rgba(7, 7, 7, 0.928);
+                background-color: rgba(200, 188, 188, 0.928);
                 color: white;
                 }
             nav a{
@@ -55,6 +55,8 @@
             display: block;
             max-width: 100%;
             height: auto;
+            mix-blend-mode: color-burn;
+
             
             }
             .edit {
@@ -67,7 +69,20 @@
                 color: aliceblue;
                 
             }
-            
+            @media only screen and (max-width: 600px) {
+    .list {
+        width: 90%;
+        height: auto;
+    }
+    
+    .list li {
+        font-size: 16px;
+    }
+    
+    nav a {
+        padding: 10px 20px;
+    }
+}
             
         </style>
    
