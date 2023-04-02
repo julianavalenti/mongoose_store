@@ -64,11 +64,30 @@
             margin-top: 20px;
             text-align: left;
             text-transform:capitalize;
+           
             }
             #ed {
                 color: aliceblue;
                 
+                
             }
+
+            #edit-btn, #buy-btn, #delete {
+                background-color: rgba(200, 188, 188, 0.928);
+                
+                margin: 10px;
+                color: yellow;
+                font-family: 'Oswald', sans-serif;
+                font-size: 20px;
+                border-style: double;
+                border-color: rgb(10, 13, 13);
+                cursor:grab;
+                transition: all 0.3s ease 0s;
+            
+            }
+
+
+            
             @media only screen and (max-width: 600px) {
     .list {
         width: 90%;
@@ -114,10 +133,10 @@
    
 
     
-    <a href="/products/<%= product._id %>/edit"><button type="button" id ="edit" >EDIT</button></a>
+    <a href="/products/<%= product._id %>/edit"><button type="button" id ="edit-btn" >EDIT</button></a>
     
     <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
-         <input type="submit" value="DELETE">
+         <input id="delete" type="submit" value="DELETE" id="delete-btn">
     </form>
     
     <form method="POST" action="/products/<%= product._id %>/buy">
@@ -125,7 +144,7 @@
             <button type="hidden"></button>
             <h3> OUT OF STOCK</h3>
         <% } else { %>
-            <button type="submit">BUY</button>
+            <button id= "buy-btn"type="submit">BUY</button>
         <% } %>
     </form>
 
