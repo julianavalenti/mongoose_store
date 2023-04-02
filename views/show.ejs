@@ -4,14 +4,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product Page</title>
-        <link rel="stylesheet" href="./public/style.css" type="text/css">
+        
         <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
         <style>
             body {
                 background-color: rgba(7, 7, 7, 0.928);
                 color: white;
                 }
-
             nav a{
                 color: yellow;
                 text-decoration: none;
@@ -23,7 +22,6 @@
                 padding: 10px 30px 10px 30px;
                 transition: all 0.3s ease 0s;
             }
-
             nav a:hover {
                 transition: all 0.3s ease 0s;
                 color:azure;
@@ -44,43 +42,35 @@
             flex-grow: 1;
             
             }
-
 .list li {
   margin-bottom: 10px;
   font-size: 20px;
   text-transform: capitalize;
   text-align: left;
 }
-
 #title {
     text-transform: uppercase;
 }
-
 .list img {
   display: block;
   max-width: 100%;
   height: auto;
   
 }
-
 .edit {
 display: flex;
-
   margin-top: 20px;
   text-align: left;
   text-transform:capitalize;
 }
-
 #ed {
     color: aliceblue;
     
 }
-
-
             
-
             
         </style>
+   
     </head>
 <body>
     <header>
@@ -109,6 +99,7 @@ display: flex;
    
 
     <a id ="ed" href="/products/<%= product._id %>/edit">Edit Product</a>
+    
     
     <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
          <input type="submit" value="DELETE">
