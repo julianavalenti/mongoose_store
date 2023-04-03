@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+</head>
+<body>
+  <h1>Shopping Cart</h1>
+  <% if (cart.length === 0) { %>
+    <p>Your cart is empty.</p>
+  <% } else { %>
+    <ul>
+      <% cart.forEach(function(product) { %>
+        <li>
+          <ul>
+            <li><%= product.name %></li>
+            <li>Description: <%= product.description %></li>
+            <li>Quantity in stock: <%= product.qty %></li>
+            <li>Price: $<%= product.price %></li>
+            <img src="<%= product.img %>" alt="product picture" width="200px" height="auto">
+            
+            <form action="/cart/<%=product._id%>?_method=DELETE" method="POST">
+                <input id="delete" type="submit" value="DELETE" id="delete-btn">
+           </form>
+          
+        </ul>
+        </li>
+      <% }); %>
+    </ul>
+  <% } %>
+</body>
+</html>
