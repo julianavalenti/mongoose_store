@@ -29,7 +29,7 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 
 
 
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:true}))
 
 
 
@@ -78,11 +78,15 @@ app.delete('/products/:id', async (req, res) => {
     res.redirect("/products")
 })
 
-// app.delete('/cart', async (req, res) => {
- 
-//     await Product.findByIdAndDelete(req.params.id);
-//     res.redirect("/cart")
-// })
+app.delete('/cart', async (req, res) => {
+    const user = await User.findOne({});
+    const  product  = req.body;
+    await User.updateOne({},{ $pull: { shopping_cart: { _id: product.id } } });
+    res.redirect("/cart");
+    console.log(req.body)
+  });
+  
+
 
 // U for update
 
@@ -96,6 +100,7 @@ app.put('/products/:id', async (req, res) => {
 
     
 });
+
 
 app.get('/products/:id/edit', async (req, res) => {
     const product = await Product.findById(

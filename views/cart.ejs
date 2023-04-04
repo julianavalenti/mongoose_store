@@ -4,9 +4,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./public/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
   <title>Shopping Cart</title>
+  
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="/products">HOME</a>
+            <a href="/new">CREATE A NEW PRODUCT</a>
+        </nav>
+    </header>
+    
+    <nav class="cart">
   <h1>Shopping Cart</h1>
   <% if (cart.length === 0) { %>
     <p>Your cart is empty.</p>
@@ -21,8 +32,9 @@
             <li>Price: $<%= product.price %></li>
             <img src="<%= product.img %>" alt="product picture" width="200px" height="auto">
             
-            <form action="/cart/<%=product._id%>?_method=DELETE" method="POST">
+            <form action="/cart?_method=DELETE" method="POST">
                 <input id="delete" type="submit" value="DELETE" id="delete-btn">
+                <input type="hidden" name="id" id="" value= "<%= product._id %>" >
            </form>
           
         </ul>
@@ -30,5 +42,6 @@
       <% }); %>
     </ul>
   <% } %>
+</nav>
 </body>
 </html>
